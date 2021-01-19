@@ -1,0 +1,13 @@
+
+.content {
+    grid-area: content;
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+
+  }
+  .posts {
+  }
+  .profile  {   
+  }
+  

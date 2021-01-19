@@ -1,0 +1,39 @@
+
+  .navbar {
+    grid-area: navbar;
+    text-decoration: none;
+    background-color: #F2F2F2;
+    margin-left: 10px;
+  }
+  .navbarList {
+    margin: 0;
+    padding: 0;
+  }
+  .navbarLink {
+    color: #000000;
+    text-decoration: none;
+  }
+  .navbarListItem {
+    list-style-type: none;
+    margin-top: 20px;
+    position: relative;
+  }
+  .navbarListItem::after {
+    display: block;
+    content: '';
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    width: 80%;
+    margin-left: 10%;
+    position: absolute;
+  }
+  .navbarListItem:last-child:after {
+    display: none;
+  }
+  .navbarListItem:first-child {
+    margin-top: 10px;
+  }
+
+  .active {
+    color: gray;
+  }

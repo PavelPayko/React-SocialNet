@@ -1,0 +1,47 @@
+.header {
+    background-color: #282c34;
+    /* min-height: 100vh; */
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: start; */
+    font-size: calc(10px + 2vmin);
+    color: #F2F2F2;
+    grid-area: header;
+    padding:  0 20px;
+  }
+  .headerLogoText {
+      margin-left: 10px;
+  }
+  .headerLogoText p {
+    margin: 0;
+    font-size: 14px;
+  }
+  .headerLogoText p:first-child {
+    font-size: 24px;
+  }
+  .headerLogo {
+    /* height: 40vmin; */
+    pointer-events: none;
+    width: 50px;
+    margin: 0;
+  }
+
+  @keyframes headerLogoSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+
+
+@media (prefers-reduced-motion: no-preference) {
+    .headerLogo {
+      animation: headerLogoSpin infinite 20s linear;
+    }
+  }

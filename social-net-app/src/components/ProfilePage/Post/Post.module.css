@@ -1,0 +1,26 @@
+.post {
+    margin-top: 10px;
+    background-color: #F2F2F2;
+}
+.authorName {
+    margin-left: 10px;
+}
+.author img {
+    width: 50px;
+}
+.author, .likes, .commentsAuthor, .newComment {
+    display: flex;
+    justify-content: start;
+}
+.author p {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.newComment img, .commentsAuthor img {
+    width: 20px;
+}
+.text {}
+.buttons{}
+.comments{}
+.commentText{}

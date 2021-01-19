@@ -1,0 +1,14 @@
+.wrapper {
+    width: 80%;
+    background-color: #537072;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.avatar {
+    width: 50px;
+}
+.left {
+    background-color: #F2F2F2;
+    align-self: flex-start;
+}

@@ -1,0 +1,11 @@
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+}
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}

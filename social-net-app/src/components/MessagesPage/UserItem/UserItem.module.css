@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+}
+.name p {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}

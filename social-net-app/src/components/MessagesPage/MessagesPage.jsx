@@ -1,8 +1,8 @@
 import React from 'react'
 import classes from './MessagesPage.module.css'
 import Message from "./Message/Message";
-import WriteMessage from "./WriteMessage/WriteMessage";
 import UserItem from "./UserItem/UserItem";
+import ContainerWriteMessage from "./WriteMessage/ContainerWriteMessage";
 
 const MessagesPage = (props) => {
 
@@ -11,17 +11,17 @@ const MessagesPage = (props) => {
 
     return (
         <div className={classes.wrapper}>
-            <div className={classes.messages}>
-                {messages}
-                <WriteMessage
-                    messageInputText={props.messagesPage.messageInputText}
+            <div className ={classes.messages}>
+                { messages }
+                <ContainerWriteMessage
+                    state={props.messagesPage}
                     dispatch = {props.dispatch}
 
                 />
             </div>
             <div className={classes.dialogs}>
                 <h3>Диалоги</h3>
-                {dialogs}
+                { dialogs }
             </div>
         </div>
     )

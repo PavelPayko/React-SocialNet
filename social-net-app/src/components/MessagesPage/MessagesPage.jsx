@@ -3,27 +3,33 @@ import classes from './MessagesPage.module.css'
 import Message from "./Message/Message";
 import UserItem from "./UserItem/UserItem";
 import ContainerWriteMessage from "./WriteMessage/ContainerWriteMessage";
+import StoreContext from "../../StoreContext";
 
-const MessagesPage = (props) => {
-
-    const messages = props.messagesPage.messageData.map( message => <Message name={message.name} text={message.text}/> )
-    const dialogs = props.messagesPage.dialogsData.map(dialog => <UserItem id={dialog.id} name={dialog.name}/>)
+const MessagesPage = () => {
 
     return (
-        <div className={classes.wrapper}>
-            <div className ={classes.messages}>
-                { messages }
-                <ContainerWriteMessage
-                    state={props.messagesPage}
-                    dispatch = {props.dispatch}
+        <StoreContext.Consumer>
+            {
+                store => {
+                    const messages = store.getState().messagesPage.messageData.map(message => <Message name={message.name} text={message.text}/> )
+                    const dialogs = store.getState().messagesPage.dialogsData.map(dialog => <UserItem id={dialog.id} name={dialog.name}/>)
 
-                />
-            </div>
-            <div className={classes.dialogs}>
-                <h3>Диалоги</h3>
-                { dialogs }
-            </div>
-        </div>
+                    return (
+                        <div className={classes.wrapper}>
+                            <div className ={classes.messages}>
+                                { messages }
+                                <ContainerWriteMessage />
+                            </div>
+                            <div className={classes.dialogs}>
+                                <h3>Диалоги</h3>
+                                { dialogs }
+                            </div>
+                        </div>
+                    )
+                }
+            }
+        </StoreContext.Consumer>
+
     )
 }
 export default MessagesPage

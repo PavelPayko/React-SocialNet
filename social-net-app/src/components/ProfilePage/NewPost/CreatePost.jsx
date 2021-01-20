@@ -4,12 +4,6 @@ import classes from './CreatePost.module.css'
 
 function CreatePost(props) {
 
-
-    // let inputValue = inputEl.current.value;
-
-    // let inputEl = document.querySelector('#inputEl')
-    // let inputValue = inputEl.value;
-
     let changeHandler = () =>  props.newPostValue(props.inputEl.current.value)
 
     let clickHandler = () => props.addNewPost()

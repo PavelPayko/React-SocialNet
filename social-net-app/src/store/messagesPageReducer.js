@@ -19,17 +19,22 @@ const initialState = {
 
 const messagesPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEND_MESSAGE :
-            state.messageData.push({
-                id: state.messageData.length,
+        case SEND_MESSAGE : {
+            let newState = {...state}
+            newState.messageData = [...state.messageData]
+            newState.messageData.push({
+                id: newState.messageData.length,
                 name: 'User Name',
-                text: state.messageInputText
+                text: newState.messageInputText
             })
-            state.messageInputText = ''
-            return state
-        case MESSAGE_NEW_INPUT_VALUE :
-            state.messageInputText = action.value
-            return state
+            newState.messageInputText = ''
+            return newState
+        }
+        case MESSAGE_NEW_INPUT_VALUE : {
+            let newState = {...state}
+            newState.messageInputText = action.value
+            return newState
+        }
         default :
             return state
     }

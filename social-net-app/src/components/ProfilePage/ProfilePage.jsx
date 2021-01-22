@@ -3,30 +3,30 @@ import Post from './Post/Post'
 import Profile from './Profile/Profile'
 import classes from './ProfilePage.module.css'
 import ContainerCreatePost from "./NewPost/ContainerCreatePost";
-import StoreContext from "../../StoreContext";
+import axios from "axios";
 
-function ProfilePage() {
+function ProfilePage(props) {
+    if (props.postsData.length === 0) {
+        axios.get("http://jsonplaceholder.typicode.com/posts")
+            .then((response) => {
+                props.getPosts(response.data)
+                console.log(response)
+            })
+    }
 
+    let posts = props.postsData.map(
+        post => <Post key={post.id} name={post.name} title={post.title} text={post.body}/>
+    )
     return (
-        <StoreContext.Consumer>
-            {
-                store => {
-                    let posts = store.getState().profilePage.postsData.map(
-                        post => <Post name={post.name} text={post.text}/>
-                    )
-                    return (
-                        <section className={classes.content}>
-                            <div className={classes.posts}>
-                                <ContainerCreatePost />
-                                { posts }
-                            </div>
-                            <Profile/>
-                        </section>
-                    )
-                }
-            }
-        </StoreContext.Consumer>
-
+        <section className={classes.content}>
+            <div className={classes.posts}>
+                <ContainerCreatePost/>
+                <div className={classes.postsContent}>
+                    {posts}
+                </div>
+            </div>
+            <Profile/>
+        </section>
     )
 }
 

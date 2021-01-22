@@ -1,33 +1,29 @@
 import React from 'react'
 import {addPostActionCreator, postInputValueActionCreator} from "../../../store/profilePageReducer";
 import CreatePost from "./CreatePost";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
 
-function ContainerCreatePost() {
-    return (
-        <StoreContext.Consumer>
-            {
-                store => {
-                let addNewPost = () => {
-                    store.dispatch(addPostActionCreator())
-                    console.log('add')
-                }
-                let newPostValue = (inputValue) => {
-                    store.dispatch(postInputValueActionCreator(inputValue))
-                    console.log(inputValue)
-                }
-                let inputEl = React.createRef();
-                return (<CreatePost addNewPost={addNewPost}
-                                    newPostValue={newPostValue}
-                                    postsInputText={store.getState().profilePage.postsInputText}
-                                    inputEl={inputEl}
-                    />
-                )
-            }
-            }
-        </StoreContext.Consumer>
-    )
+const mapStateToProps = (state) => {
+    return {
+        postsInputText: state.profilePage.postsInputText,
+        inputEl: React.createRef()
+    }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addNewPost: () => {
+            dispatch(addPostActionCreator())
+        },
+        newPostValue: (inputValue) => {
+            dispatch(postInputValueActionCreator(inputValue))
+        },
+        getPosts: (posts) => {
+            dispatch(getPostsActionCreator(posts))
+        }
+    }
+}
+const ContainerCreatePost = connect(mapStateToProps, mapDispatchToProps)(CreatePost)
 
 export default ContainerCreatePost

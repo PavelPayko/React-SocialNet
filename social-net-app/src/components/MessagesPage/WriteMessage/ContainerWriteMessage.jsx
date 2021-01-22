@@ -1,28 +1,21 @@
 import React from 'react'
 import {messageInputValueActionCreator, sendMessageActionCreator} from "../../../store/messagesPageReducer";
 import WriteMessage from "./WriteMessage";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
-function ContainerWriteMessage() {
-    return (
-        <StoreContext.Consumer>
-            {
-                store => {
-                    let inputEl = React.createRef();
-
-                    let messageSend = () => store.dispatch(sendMessageActionCreator())
-                    let newMessageValue = () => store.dispatch(messageInputValueActionCreator(inputEl.current.value))
-
-                    return ( <WriteMessage
-                            inputEl = {inputEl}
-                            messageInputText={store.getState().messagesPage.messageInputText}
-                            messageSend = {messageSend}
-                            newMessageValue = {newMessageValue}
-                        />
-                    )
-                }
-            }
-        </StoreContext.Consumer>
-    )
+const mapStateToProps = (state) => {
+    return {
+        inputEl: React.createRef(),
+        messageInputText: state.messagesPage.messageInputText
+    }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        messageSend: () => dispatch(sendMessageActionCreator()),
+        newMessageValue: (text) => dispatch(messageInputValueActionCreator(text))
+    }
+}
+const ContainerWriteMessage = connect(mapStateToProps, mapDispatchToProps)(WriteMessage)
+
 export default ContainerWriteMessage

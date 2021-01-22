@@ -14,7 +14,8 @@ function Post(props) {
 
             </div>
             <div className={classes.text}>
-                {props.text}
+                <h5>{props.title}</h5>
+                <p>{props.text}</p>
             </div>
             <div className={classes.likes}>
                 <span>likes</span>
@@ -34,7 +35,7 @@ function Post(props) {
             </div>
             <div className={classes.newComment}>
                 <img src={avatar} alt='avatar'/>
-                <input type="text" name="newCommentText" id="newCommentText"/>
+                <input type="text" name="newCommentText"/>
             </div>
         </article>
     )

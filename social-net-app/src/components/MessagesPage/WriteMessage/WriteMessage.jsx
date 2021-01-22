@@ -2,12 +2,13 @@ import React from 'react'
 import classes from './WriteMessage.module.css'
 
 function WriteMessage(props) {
+    const changeHandler = () => props.newMessageValue(props.inputEl.current.value)
 
     return (
         <div className={classes.wrapper}>
             <input type="text"
                    value={props.messageInputText}
-                   onChange={props.newMessageValue}
+                   onChange={changeHandler}
                    ref={props.inputEl}
                    className={classes.text}
             />

@@ -1,0 +1,66 @@
+.page {
+    display: flex;
+    margin: 20px 0;
+}
+.userList {
+    width: 100%;
+}
+.user {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    background-color: #F2F2F2;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.avatar {
+    width: 150px;
+    border-radius: 50%;
+}
+.subscriptions {
+    width: 400px;
+    background-color: inherit;
+    border-radius: 10px;
+    margin: 0 20px 20px 40px;
+}
+.subscriptionsTitle {
+    background-color: #F2F2F2;
+    height: 40px;
+    border-radius: 10px;
+    line-height: 40px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.followButton {
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+}
+.followButton:hover {
+    background-color: #CAFCAC;
+
+}
+.active {
+    background-color: inherit !important;
+    border: 2px solid #F2F2F2;
+    color: #F2F2F2;
+}
+.pagination {
+    margin: 8px 0 18px;
+}
+.paginationItem {
+    font-size: 12px;
+    background-color: #F2F2F2;
+    width: 20px;
+    border-radius: 50%;
+    margin: 0 5px;
+    height: 20px;
+    display: inline-block;
+    line-height: 20px;
+    border: 2px solid inherit;
+}
+.paginationItem:hover {
+    background-color: #CAFCAC;
+    cursor: pointer;
+}

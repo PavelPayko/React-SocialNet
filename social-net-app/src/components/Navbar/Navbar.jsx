@@ -5,13 +5,14 @@ import {NavLink} from "react-router-dom";
 function Navbar() {
     return (
             <nav className={classes.navbar}>
-                <ul className={classes.navbarList}>
-                    <li className={classes.navbarListItem}><NavLink to="/profile" className={classes.navbarLink} activeClassName={classes.active}>Profile</NavLink></li>
-                    <li className={classes.navbarListItem}><NavLink to="/messages" className={classes.navbarLink} activeClassName={classes.active}>Messages</NavLink></li>
-                    <li className={classes.navbarListItem}><NavLink to="/news" className={classes.navbarLink} activeClassName={classes.active}>News</NavLink></li>
-                    <li className={classes.navbarListItem}><NavLink to="/music" className={classes.navbarLink} activeClassName={classes.active}>Music</NavLink></li>
-                    <li className={classes.navbarListItem}><NavLink to="/settings" className={classes.navbarLink} activeClassName={classes.active}>Settings</NavLink></li>
-                </ul>
+                <div className={classes.navbarList}>
+                    <NavLink to="/profile" className={classes.navbarLink} activeClassName={classes.active}>Profile</NavLink>
+                    <NavLink to="/messages" className={classes.navbarLink} activeClassName={classes.active}>Messages</NavLink>
+                    <NavLink to="/users" className={classes.navbarLink} activeClassName={classes.active}>Users</NavLink>
+                    <NavLink to="/news" className={classes.navbarLink} activeClassName={classes.active}>News</NavLink>
+                    <NavLink to="/music" className={classes.navbarLink} activeClassName={classes.active}>Music</NavLink>
+                    <NavLink to="/settings" className={classes.navbarLink} activeClassName={classes.active}>Settings</NavLink>
+                </div>
             </nav>
     )
 }

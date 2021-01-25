@@ -9,23 +9,27 @@ import SettingsPage from "./components/SettingsPage/SettingsPage";
 import React from "react";
 import MessagesPageContainer from "./components/MessagesPage/MessagesPageConainer";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
+import UsersPageContainer from "./components/Users/UsersPageContainer";
 
 function App() {
     return (
-            <div className="App">
-                <Header/>
-                <Navbar/>
-                <Switch>
-                    <Route path='/profile'><ProfilePageContainer />
-                    </Route>
-                    <Route path='/messages'><MessagesPageContainer />
-                    </Route>
-                    <Route path='/news'><NewsPage /></Route>
-                    <Route path='/music'><MusicPage /></Route>
-                    <Route path='/settings'><SettingsPage /></Route>
-                </Switch>
-                <Footer/>
-            </div>
+        <div className="App">
+            <Header/>
+            <Navbar/>
+            <Switch>
+                <Route path='/profile'><ProfilePageContainer/>
+                </Route>
+                <Route path='/messages'><MessagesPageContainer/>
+                </Route>
+                <Route path='/users'><UsersPageContainer/>
+                </Route>
+
+                <Route path='/news'><NewsPage/></Route>
+                <Route path='/music'><MusicPage/></Route>
+                <Route path='/settings'><SettingsPage/></Route>
+            </Switch>
+            <Footer/>
+        </div>
     );
 }
 

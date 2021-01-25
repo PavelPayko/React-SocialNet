@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 0;
   grid-template-columns: 200px 1fr;
   grid-template-rows: 60px 1fr 30px;
   grid-template-areas: 
@@ -9,7 +9,7 @@
     'navbar content'
     'footer footer';
   min-height: 100vh;
-  background-color: #E0E0E0;
+  background: linear-gradient(#92B2BF, #ACE1F7 );
 }
 
 

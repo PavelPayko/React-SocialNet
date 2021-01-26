@@ -2,20 +2,15 @@ import React from 'react'
 import {connect} from "react-redux";
 import UsersPage from "./UsersPage";
 import {
-    followActionCreator,
-    getSubscriptionsActionCreator,
-    getUsersActionCreator, setCurrentPageActionCreator, setPageListActionCreator,
-    unfollowActionCreator
+    follow,
+    getSubscriptions,
+    getUsers, setCurrentPage, setPageList,
+    unfollow
 } from "../../store/usersPageReducer";
 import axios from "axios";
 
 class UsersPageContainer extends React.Component {
     componentDidMount() {
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1`)
-        //     .then((response) => {
-        //         this.props.setCurrentPage(page, response.data.items, pageList)
-        //     })
-
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
             .then((response) => {
                 this.props.getUsers(response.data)
@@ -78,27 +73,30 @@ const mapStateToProps = (state) => {
         pageList: state.usersPage.pageList
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return{
-        getUsers: (users) => {
-            dispatch(getUsersActionCreator(users))
-        },
-        follow: (userId) => {
-            dispatch(followActionCreator(userId))
-        },
-        unfollow: (index) => {
-            dispatch(unfollowActionCreator(index))
-        },
-        getSubscriptions: (subscriptions) => {
-            dispatch(getSubscriptionsActionCreator(subscriptions))
-        },
-        setCurrentPage: (page, users, pageList) => {
-            dispatch(setCurrentPageActionCreator(page, users, pageList))
-        },
-        setPageList: (pageList) => {
-            dispatch(setPageListActionCreator(pageList))
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         getUsers: (users) => {
+//             dispatch(getUsersActionCreator(users))
+//         },
+//         follow: (userId) => {
+//             dispatch(followActionCreator(userId))
+//         },
+//         unfollow: (index) => {
+//             dispatch(unfollowActionCreator(index))
+//         },
+//         getSubscriptions: (subscriptions) => {
+//             dispatch(getSubscriptionsActionCreator(subscriptions))
+//         },
+//         setCurrentPage: (page, users, pageList) => {
+//             dispatch(setCurrentPageActionCreator(page, users, pageList))
+//         },
+//         setPageList: (pageList) => {
+//             dispatch(setPageListActionCreator(pageList))
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPageContainer)
+export default connect(mapStateToProps, {
+        getUsers,follow,unfollow,getSubscriptions,
+        setCurrentPage,setPageList
+    })(UsersPageContainer)

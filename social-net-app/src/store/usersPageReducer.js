@@ -56,30 +56,30 @@ let usersPageReducer = (state = initialState, action) => {
     }
 
 }
-export const getUsersActionCreator = (data) => ({
+export const getUsers = (data) => ({
     type: GET_USERS,
     users: data.items,
     count: data.totalCount
 })
-export const followActionCreator = (userId) => ({
+export const follow = (userId) => ({
     type: FOLLOW,
     userId
 })
-export const unfollowActionCreator = (index) => ({
+export const unfollow = (index) => ({
     type: UNFOLLOW,
     index
 })
-export const getSubscriptionsActionCreator = (subscriptions) => ({
+export const getSubscriptions = (subscriptions) => ({
     type: GET_SUBSCRIPTIONS,
     subscriptions
 })
-export const setCurrentPageActionCreator = (page, users, pageList) => ({
+export const setCurrentPage = (page, users, pageList) => ({
     type: SET_CURRENT_PAGE,
     currentPage: page,
     users,
     pageList
 })
-export const setPageListActionCreator = (pageList) => ({
+export const setPageList = (pageList) => ({
     type: SET_PAGE_LIST,
     pageList
 })

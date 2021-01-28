@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './Header.module.css'
 import logo from '../../img/logo.svg'
+import AuthContainer from "../Auth/AuthContainer";
 
 function Header () {
     return (
@@ -10,6 +11,7 @@ function Header () {
           <p>React</p>
           <p>SocialNet</p>
         </div>
+            <AuthContainer />
       </header>
     )
 }

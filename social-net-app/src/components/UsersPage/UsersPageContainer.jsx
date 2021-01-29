@@ -2,56 +2,31 @@ import React from 'react'
 import {connect} from "react-redux";
 import UsersPage from "./UsersPage";
 import {
-    follow,
+    follow, followTC, getPageTC,
     getSubscriptions,
-    getUsers, setCurrentPage, setPageList,
-    unfollow
+    getUsers, setCurrentPage, setFetching, setFollowFetching, setPageList,
+    unfollow, unfollowTC
 } from "../../store/usersPageReducer";
-import axios from "axios";
+import withAuthRedirect from "../HOC/withRedirect";
 
 class UsersPageContainer extends React.Component {
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-            .then((response) => {
-                this.props.getUsers(response.data)
-            })
+   this.getPage()
     }
 
     followHandler = (userId) => {
-        // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}/`)
-        //     .then((response) => {
-        //         console.log(response)
-        //     })
-        // put userid
-        // .then get subscriptions
-        // .then this.props.getSubscriptions(response)
-        this.props.follow(userId)
+        this.props.followTC(userId)
     }
     unfollowHandler = (userId) => {
-        // delete userid
-        // .then get subscriptions
-        // .then this.props.getSubscriptions(response)
-        let index = this.props.subscriptionsList.findIndex(item => item.id === userId)
-        this.props.unfollow(index)
+        this.props.unfollowTC(userId)
     }
 
     getPage = (page) => {
-        let pageList = [];
-        let i;
-        let iMax;
-        (page <= 3)? i = 1 : i = page-2;
-        (page <= 3)? iMax = 5 : iMax = page+2;
-        for(i;i <= iMax; i++){
-            pageList.push(i)
-        }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}`)
-            .then((response) => {
-                this.props.setCurrentPage(page, response.data.items, pageList)
-            })
+        this.props.getPageTC(page)
     }
 
     render() {
-        return ( < UsersPage
+        return (< UsersPage
             usersData={this.props.usersData}
             subscriptionsList={this.props.subscriptionsList}
             pageList={this.props.pageList}
@@ -59,18 +34,24 @@ class UsersPageContainer extends React.Component {
             unfollowHandler={this.unfollowHandler}
             followHandler={this.followHandler}
             getPage={this.getPage}
-
+            isFetching={this.props.isFetching}
+            isFollowFetching={this.props.isFollowFetching}
+            followFetchState={this.props.followFetchState}
         />)
     }
 }
 
 const mapStateToProps = (state) => {
-    return{
+    return {
         usersData: state.usersPage.usersData,
         subscriptionsList: state.usersPage.subscriptionsList,
         count: state.usersPage.count,
         currentPage: state.usersPage.currentPage,
-        pageList: state.usersPage.pageList
+        pageList: state.usersPage.pageList,
+        isFetching: state.usersPage.isFetching,
+        isFollowFetching: state.usersPage.isFollowFetching,
+        followFetchState: state.usersPage.followFetchState,
+        isAuth: state.auth.isAuth
     }
 }
 // const mapDispatchToProps = (dispatch) => {
@@ -96,7 +77,10 @@ const mapStateToProps = (state) => {
 //     }
 // }
 
-export default connect(mapStateToProps, {
-        getUsers,follow,unfollow,getSubscriptions,
-        setCurrentPage,setPageList
-    })(UsersPageContainer)
+const mapDispatchToProps = {
+    getUsers, follow, unfollow, getSubscriptions,
+    setCurrentPage, setPageList, setFetching, setFollowFetching,
+    getPageTC,followTC, unfollowTC
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(UsersPageContainer))

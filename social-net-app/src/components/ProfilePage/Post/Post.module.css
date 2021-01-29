@@ -10,7 +10,7 @@
 }
 .author, .likes, .commentsAuthor, .newComment {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 .author p {
     margin: 0;

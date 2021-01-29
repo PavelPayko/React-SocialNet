@@ -1,4 +1,3 @@
-import React from 'react'
 import MessagesPage from "./MessagesPage";
 import {connect} from "react-redux";
 
@@ -9,8 +8,6 @@ const mapStateToProps = (state /*, ownProps*/) => {
     }
 }
 
-const mapDispatchToProps = () => {
-
-}
+const mapDispatchToProps = {}
 const MessagesPageContainer = connect(mapStateToProps, mapDispatchToProps)(MessagesPage)
 export default MessagesPageContainer

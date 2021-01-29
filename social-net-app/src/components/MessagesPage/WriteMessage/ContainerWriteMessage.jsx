@@ -1,5 +1,5 @@
 import React from 'react'
-import {messageInputValueActionCreator, sendMessageActionCreator} from "../../../store/messagesPageReducer";
+import {messageInputValue, sendMessage} from "../../../store/messagesPageReducer";
 import WriteMessage from "./WriteMessage";
 import {connect} from "react-redux";
 
@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        messageSend: () => dispatch(sendMessageActionCreator()),
-        newMessageValue: (text) => dispatch(messageInputValueActionCreator(text))
+        messageSend: () => dispatch(sendMessage()),
+        newMessageValue: (text) => dispatch(messageInputValue(text))
     }
 }
 const ContainerWriteMessage = connect(mapStateToProps, mapDispatchToProps)(WriteMessage)

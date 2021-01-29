@@ -41,9 +41,9 @@ const messagesPageReducer = (state = initialState, action) => {
 
 }
 
-export const sendMessageActionCreator = () => (
+export const sendMessage = () => (
     {type: SEND_MESSAGE})
-export const messageInputValueActionCreator = (text) => (
+export const messageInputValue = (text) => (
     {type: MESSAGE_NEW_INPUT_VALUE, value: text})
 
 export default messagesPageReducer

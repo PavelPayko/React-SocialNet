@@ -18,7 +18,7 @@ const authReducer = (state = initialState, action) => {
                 login: action.data.login
             }
         default:
-            return  state
+            return state
     }
 }
 

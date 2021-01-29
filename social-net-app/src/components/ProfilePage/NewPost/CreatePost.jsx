@@ -4,9 +4,9 @@ import classes from './CreatePost.module.css'
 
 function CreatePost(props) {
 
-    let changeHandler = () =>  props.newPostValue(props.inputEl.current.value)
+    let changeHandler = () =>  props.postInputValue(props.inputEl.current.value)
 
-    let clickHandler = () => props.addNewPost()
+    let clickHandler = () => props.addPost()
 
   return (
     <div className={classes.createPost}>

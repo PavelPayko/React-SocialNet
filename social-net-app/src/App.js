@@ -9,7 +9,7 @@ import SettingsPage from "./components/SettingsPage/SettingsPage";
 import React from "react";
 import MessagesPageContainer from "./components/MessagesPage/MessagesPageConainer";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
-import UsersPageContainer from "./components/Users/UsersPageContainer";
+import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
 
 function App() {
     return (
@@ -17,7 +17,7 @@ function App() {
             <Header/>
             <Navbar/>
             <Switch>
-                <Route path='/profile'><ProfilePageContainer/>
+                <Route path='/profile/:userId?'><ProfilePageContainer/>
                 </Route>
                 <Route path='/messages'><MessagesPageContainer/>
                 </Route>

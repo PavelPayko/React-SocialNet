@@ -1,21 +1,19 @@
 import React from 'react'
 import Auth from "./Auth";
-import axios from "axios";
 import {connect} from "react-redux";
 import {auth} from "../../store/authReducer";
+import {authAPI} from "../../API/API";
 
 class AuthContainer extends React.Component {
     componentDidMount() {
-        // this.login()
+        this.login()
     }
     login = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-            withCredentials: true
-        }).then((response) => {
-            if(response.data.resultCode === 0){
-                this.props.auth(response.data.data)
-            }else if(response.data.resultCode === 1){
-                console.log(response.data.messages)
+        authAPI.auth().then((data) => {
+            if(data.resultCode === 0){
+                this.props.auth(data.data)
+            }else if(data.resultCode === 1){
+                console.log(data.messages)
             }else{
                 console.error('Auth error!')
             }

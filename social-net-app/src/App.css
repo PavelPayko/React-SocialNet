@@ -11,6 +11,13 @@
   min-height: 100vh;
   background: linear-gradient(#ACE1F7, #3881A1 );
 }
+.AppLoaderWrapper {
+  min-height: 100vh;
+  background: linear-gradient(#ACE1F7, #3881A1 );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 

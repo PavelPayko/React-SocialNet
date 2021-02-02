@@ -3,16 +3,11 @@ const MESSAGE_NEW_INPUT_VALUE = 'MESSAGE_NEW_INPUT_VALUE'
 
 const initialState = {
         messageData: [
-            {id: 1, name: 'Гарри Поттер', text: 'My name is Garry'},
-            {id: 2, name: 'Рон Уизли', text: 'My name is Ron'},
-            {id: 3, name: 'Гермиона Грейнджер', text: 'My name is Germiona'},
-            {id: 4, name: 'Невилл Долгопупс', text: 'My name is Nevill'}
+            {id: 1, name: 'User Name', text: 'message text'},
+            {id: 14402, name: 'My Name', text: 'message text'},
         ],
         dialogsData: [
-            {id: 1, name: 'Гарри Поттер'},
-            {id: 2, name: 'Рон Уизли'},
-            {id: 3, name: 'Гермиона Грейнджер'},
-            {id: 4, name: 'Невилл Долгопупс'}
+            {id: 1, name: 'User Name'},{id: 1, name: 'User Name'},{id: 1, name: 'User Name'},
         ],
         messageInputText: ''
     }

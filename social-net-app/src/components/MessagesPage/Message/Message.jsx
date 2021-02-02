@@ -3,9 +3,8 @@ import classes from './Message.module.css'
 import avatar from '../../../img/avatar.jpg'
 
 const Message = (props) => {
-    const isMyMessage = name => name === 'Гарри Поттер'
     return (
-        <div className={classes.wrapper + ' ' + ( isMyMessage(props.name) ? classes.left : '')}>
+        <div className={classes.message + (props.id === props.myId ? ` ${classes.myMessage}` : '')}>
             <div className={classes.title}>
                 <img src={avatar} alt="avatar" className={classes.avatar} />
                 <span className={classes.name}>{props.name}</span>

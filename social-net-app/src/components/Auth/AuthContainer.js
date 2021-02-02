@@ -1,15 +1,17 @@
 import React from 'react'
 import Auth from "./Auth";
 import {connect} from "react-redux";
-import {logoutTC} from "../../store/authReducer";
+import {authMeTC, logoutTC} from "../../store/authReducer";
 
 class AuthContainer extends React.Component {
-    componentDidMount() {
-    }
+
     logout = () => this.props.logoutTC()
+    login = () => this.props.authMeTC()
+
     render (){
+        console.log(this.props)
         return (
-            <Auth {...this.props} login={this.login} logout={this.logout}/>
+            <Auth {...this.props}  login={this.login} logout={this.logout}/>
         )
     }
 }
@@ -19,4 +21,4 @@ const mapStateToProps = (state) =>({
 })
 
 
-export default connect(mapStateToProps,{logoutTC})(AuthContainer)
+export default connect(mapStateToProps,{logoutTC, authMeTC})(AuthContainer)

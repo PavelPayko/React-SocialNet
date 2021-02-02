@@ -1,50 +1,54 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import classes from './Status.module.css'
+import LoaderLine from "../../../commonComponents/LoaderLine/LoaderLine";
 
-class Status extends React.Component {
-    state = {
-        isStatusEdit: false,
-        status: this.props.status
-    }
+const Status = props => {
+    const [isStatusEdit, isStatusToggle] = useState(false)
+    const [localStatus, setLocalStatus] = useState(props.status)
+    const [isUpdating, isUpdatingToggle] = useState(false)
 
-    setStatusHandler = () => {
-        this.props.setStatus(this.state.status)
-        this.setState({
-            isStatusEdit: false
-        })
+    const setStatusHandler = () => {
+        props.setStatus(localStatus)
+        isStatusToggle(false)
+        if(props.status !== localStatus)
+        isUpdatingToggle(true)
     }
-    editStatus = () => {
-        this.setState({
-            isStatusEdit: true
-        })
+    const editStatus = () => {
+        props.myProfile && isStatusToggle(true)
     }
-    inputHandler = (event) => {
-        console.log(event.target.value)
-        this.setState({
-            status: event.target.value
-        })
+    const inputHandler = event => {
+        setLocalStatus(event.target.value)
     }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.status !== this.props.status){
-            this.setState({
-                status: this.props.status
-            })
+    useEffect(() => {
+        if (props.status !== localStatus) {
+            setLocalStatus(props.status)
         }
-    }
+        isUpdatingToggle(false)
+    }, [props.status])
 
-    render() {
-        console.log(this.props)
-        return <div>
-            {this.state.isStatusEdit
-                ? <input type="text" autoFocus={true} onBlur={this.setStatusHandler} value={this.state.status}
-                         onChange={this.inputHandler}/>
-                : <span onClick={this.editStatus}>{this.props.status || 'No Status'}</span>
+
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     if(prevProps.status !== this.props.status){
+    //         this.setState({
+    //             status: this.props.status
+    //         })
+    //     }
+    // }
+
+    return (<div onClick={editStatus} className={classes.status}>
+            {isUpdating
+                ? <div className={classes.loader}><LoaderLine/></div>
+                : isStatusEdit
+                    ? <div>
+                        <input type="text" autoFocus={true} onBlur={setStatusHandler} value={localStatus}
+                               onChange={inputHandler}/>
+                    </div>
+                : <span >{props.status || 'No Status'}</span>
             }
-            {/*<input type="text" onBlur={this.setStatusHandler}/>*/}
-            {/*<span>{this.props.status}</span>*/}
-        </div>
-    }
 
+            {/*<div className={classes.loader}><LoaderLine/></div>*/}
+        </div>
+    )
 }
 
 export default Status

@@ -1,6 +1,6 @@
 .page {
     display: flex;
-    margin: 40px 0;
+    padding: 40px 20px;
 }
 .userList {
     width: 100%;
@@ -21,7 +21,7 @@
     width: 400px;
     background-color: inherit;
     border-radius: 10px;
-    margin: 0 20px 20px 40px;
+    margin: 0 20px 20px;
 }
 .subscriptionsTitle {
     background-color: #F2F2F2;

@@ -37,7 +37,7 @@ const authReducer = (state = initialState, action) => {
             return state
     }
 }
-
+// action creators
 export const authMe = (data) => ({
     type: AUTH_ME,
     data
@@ -50,15 +50,27 @@ export const logout = () => ({
     type: LOGOUT
 })
 
+//thunk creators
+export const authMeTC = () => dispatch => {
+    return authAPI.authMe()
+        .then(data => {
+            if (data.resultCode === 1) {
+                console.error(data.messages[0])
+                return data.resultCode
+            } else if (data.resultCode === 0) {
+                dispatch(authMe(data.data))
+            }
+        })
 
+}
 export const loginTC = data => dispatch => {
     authAPI.login(data)
         .then(responseData => {
             console.log(responseData)
             dispatch(login(responseData.data.userId))
         })
-        .then(() => authAPI.authMe())
-        .then(data => dispatch(authMe(data.data)))
+        // .then(() => authAPI.authMe())
+        // .then(data => dispatch(authMe(data.data)))
 
 }
 export const logoutTC = () => dispatch => {

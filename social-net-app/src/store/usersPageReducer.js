@@ -137,8 +137,8 @@ export const unsetFollowFetching = (userId) => ({
 export const getPageTC = (page = 1) => {
     return (dispatch) => {
         let pageList = [];
-        let i = (page <= 3) ? 1 : page - 2;
-        let iMax = (page <= 3) ? 5 : page + 2;
+        let i = (page <= 6) ? 1 : page - 5;
+        let iMax = (page <= 6) ? 11 : page + 5;
         for (i; i <= iMax; i++) {
             pageList.push(i)
         }

@@ -21,6 +21,8 @@ function ProfilePage(props) {
                      status={props.profilePage.status}
                      getStatus={props.getStatusTC}
                      setStatus={props.setStatusTC}
+                     uploadAvatar={props.uploadAvatarTC}
+                     myId={props.myId}
             />
         </section>
     )

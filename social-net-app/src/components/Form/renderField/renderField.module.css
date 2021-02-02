@@ -3,17 +3,30 @@
     display: flex;
     justify-content: center;
 }
+
 .fieldLabel {
-    margin-right: 10px;
-    min-width: 150px;
     text-align: right;
 }
+
 .fieldInput {
     display: flex;
     flex: 1;
-    max-width: 500px;
     flex-flow: column nowrap;
 }
+
 .validateMessage {
     color: red;
+}
+
+.input {
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.textarea {
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
 }

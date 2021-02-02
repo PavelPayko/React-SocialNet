@@ -1,13 +1,42 @@
 
 .profile {
-    margin-left: 10px;
+    display: grid;
+    grid-gap: 10px;
 }
+
 .profile img {
     width: 100%;
 }
-.profileAvatar {
- border-radius:  50%;
-}
-.profileName{
 
+.profileAvatar {
+    border-radius: 50%;
+}
+
+.profileName {
+
+}
+
+.name {
+
+}
+
+.aboutMeTitle {
+
+}
+
+.aboutMeDescrition {
+
+}
+
+.contacts {
+    margin: 0;
+    padding: 0;
+}
+
+.contactsTitle {
+
+}
+
+.contacts li {
+    list-style-type: none;
 }

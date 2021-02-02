@@ -4,34 +4,38 @@ import {Field, reduxForm} from "redux-form";
 import {Redirect} from "react-router";
 import {email, required} from "../../Form/formValidate";
 import {renderField} from "../../Form/renderField/renderField";
-
+import Button from "../Button/Button";
 
 
 const Login = (props) => {
 
 
     let LoginForm = (props) => {
-        console.log(props)
         return <div className={classes.formWrapper}>
             <form onSubmit={props.handleSubmit}>
-                <Field component={renderField}
-                       type="email"
-                       name='email'
-                       validate={[required, email]}
-                       label='Login'
-                />
-                <Field component={renderField}
-                       type="password"
-                       name='password'
-                       validate={required}
-                       label='Password'
-                />
-                <div>
-                    <Field component={'input'} type="checkbox" name='rememberMe'/>
-                    <span>Remember me</span>
+                <div className={classes.input}>
+                    <Field component={renderField}
+                           type="email"
+                           name='email'
+                           validate={[required, email]}
+                           label='Login'
+                           placeholder='Введите логин'
+                    />
+                </div>
+                <div className={classes.input}>
+                    <Field component={renderField}
+                           type="password"
+                           name='password'
+                           validate={required}
+                           label='Password'
+                           placeholder='введите пароль'
+                    />
+                </div>
+                <div className={classes.checkbox}>
+                    <Field component={renderField} type="checkbox" name='rememberMe'/>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <Button type='primary' title={'login'} size={'big'}/>
                 </div>
             </form>
         </div>

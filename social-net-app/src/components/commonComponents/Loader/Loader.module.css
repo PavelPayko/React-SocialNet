@@ -67,6 +67,10 @@
     transform: rotate(330deg);
     animation-delay: 0s;
 }
+.small {
+    width: 40px;
+    height: 40px;
+}
 @keyframes lds-spinner {
     0% {
         opacity: 1;

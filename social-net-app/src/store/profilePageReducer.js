@@ -5,6 +5,7 @@ const POST_NEW_INPUT_VALUE = 'INPUT_VALUE'
 const GET_POSTS = 'GET_POSTS'
 const SET_PROFILE = 'SET_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const SET_PHOTOS = 'SET_PHOTOS'
 
 const initialState = {
     postsData: [],
@@ -50,7 +51,11 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 status: action.newValue
             }
-
+        case SET_PHOTOS :
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
         default :
             return state
     }
@@ -69,6 +74,9 @@ export const setProfile = (profile) => (
 )
 export const setStatus = (status) => (
     {type: SET_STATUS, newValue: status}
+)
+export const setPhotos = (photos) => (
+    {type: SET_PHOTOS, photos}
 )
 
 // thunkCreators
@@ -101,5 +109,16 @@ export const setStatusTC = (status) => {
     }
 
 }
+export const uploadAvatarTC = (image) => {
+    return (dispatch) => {
+        profileAPI.uploadAvatar(image)
+            .then((data) => {
+                console.log('avatar', data)
+                dispatch(setPhotos(data.data.photos))
+            })
+    }
+
+}
+
 
 export default profilePageReducer

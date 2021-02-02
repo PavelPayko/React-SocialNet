@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from './Auth.module.css'
 import avatar from '../../img/avatar.jpg'
-import {NavLink} from "react-router-dom";
 
 const Auth = (props) => {
     return (
@@ -12,7 +11,9 @@ const Auth = (props) => {
                     <button onClick={props.logout}>log out</button>
                 </div>
                 : <div>
-                    <NavLink to='/login'>login</NavLink>
+                    {/*<NavLink to='/login'>login</NavLink>*/}
+                    <span>{props.userName}</span>
+                    <button onClick={props.login}>log in</button>
                 </div>
             }
             <img src={avatar} alt="avatar" className={classes.avatar}/>

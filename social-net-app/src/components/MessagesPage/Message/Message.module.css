@@ -1,6 +1,6 @@
-.wrapper {
+.message {
     width: 80%;
-    background-color: #537072;
+    background-color: #f2f2f2;
     margin-bottom: 20px;
     border-radius: 10px;
 }
@@ -8,7 +8,12 @@
 .avatar {
     width: 50px;
 }
-.left {
-    background-color: #F2F2F2;
-    align-self: flex-start;
+
+.message {
+    background-color: #f2f2f2;
+
+}
+.myMessage {
+    background-color: #ACE1F7;
+    align-self: flex-end;
 }

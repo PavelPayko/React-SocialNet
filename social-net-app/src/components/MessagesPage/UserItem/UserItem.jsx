@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 const UserItem = (props) => {
     return (
         <div className={classes.wrapper}>
-            <NavLink to={`/messages/${props.id}`}>
+            <NavLink to={`/messages/${props.id}`} className={classes.item}>
                 <img src={avatar} alt="avatar" className={classes.avatar}/>
                 <div className={classes.name}>
                     <p>{props.name}</p>

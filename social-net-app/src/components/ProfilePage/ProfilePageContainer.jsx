@@ -1,9 +1,15 @@
 import React from 'react'
 import {connect} from "react-redux";
 import ProfilePage from "./ProfilePage";
-import {getPosts, getStatusTC, setProfile, setProfileTC, setStatusTC} from "../../store/profilePageReducer";
+import {
+    getPosts,
+    getStatusTC,
+    setProfile,
+    setProfileTC,
+    setStatusTC,
+    uploadAvatarTC
+} from "../../store/profilePageReducer";
 import {withRouter} from "react-router";
-import withAuthRedirect from "../HOC/withRedirect";
 
 class ProfilePageContainer extends React.Component {
     componentDidMount() {
@@ -22,8 +28,10 @@ class ProfilePageContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     profilePage: state.profilePage,
+    myId: state.auth.id
 
 })
 
-const mapDispatchToProps = {getPosts, setProfile, setProfileTC, setStatusTC, getStatusTC}
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(ProfilePageContainer)))
+const mapDispatchToProps = {getPosts, setProfile, setProfileTC, setStatusTC, getStatusTC, uploadAvatarTC}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfilePageContainer))
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(ProfilePageContainer)))

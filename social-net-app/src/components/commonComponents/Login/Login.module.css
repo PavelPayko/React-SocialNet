@@ -1,9 +1,26 @@
 .loginPage {
     margin: 40px 20px;
 }
-.formWrapper{}
+.formWrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+.input, .checkbox{
+    margin-bottom: 10px;
+}
+.checkbox span {
+    margin-left: 5px;
+}
+.input label{
+    /*min-width: 100px;*/
+    /*margin-right: 10px;*/
+}
 .formLabel{
     display: block;
+}
+
+.checkbox {
+    display: inline-block;
 }
 
 /*.validateMessage:before {*/

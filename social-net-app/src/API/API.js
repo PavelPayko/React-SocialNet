@@ -11,11 +11,11 @@ export const authAPI = {
         return (samuraijsAPI.get('auth/me'))
             .then((response) => response.data)
     },
-    login(data){
+    login(data) {
         return (samuraijsAPI.post('auth/login', data))
             .then((response) => response.data)
     },
-    logout(){
+    logout() {
         return (samuraijsAPI.delete('auth/login'))
             .then((response) => response.data)
     }
@@ -33,11 +33,22 @@ export const profileAPI = {
         return (samuraijsAPI.put('profile/status/',
             {status: status}))
             .then((response) => response.data)
+    },
+    uploadAvatar(image) {
+        console.log(image)
+        let formData = new FormData();
+        formData.append("image", image);
+        return (samuraijsAPI.put('/profile/photo', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }))
+            .then((response) => response.data)
     }
 }
 export const usersAPI = {
     getPage(page) {
-        return (samuraijsAPI.get('users?page='+page))
+        return (samuraijsAPI.get('users?page=' + page))
             .then((response) => response.data)
     }
 }

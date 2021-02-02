@@ -1,13 +1,14 @@
 import MessagesPage from "./MessagesPage";
 import {connect} from "react-redux";
 
-const mapStateToProps = (state /*, ownProps*/) => {
-    return {
+const MessagesPageContainer = props => <MessagesPage {...props}/>
+
+const mapStateToProps = (state /*, ownProps*/) => ({
         messageData : state.messagesPage.messageData,
-        dialogsData : state.messagesPage.dialogsData
-    }
-}
+        dialogsData : state.messagesPage.dialogsData,
+        myId: state.auth.id
+    })
 
 const mapDispatchToProps = {}
-const MessagesPageContainer = connect(mapStateToProps, mapDispatchToProps)(MessagesPage)
-export default MessagesPageContainer
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesPageContainer)

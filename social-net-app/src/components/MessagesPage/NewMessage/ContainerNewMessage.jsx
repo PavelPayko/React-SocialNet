@@ -4,13 +4,13 @@ import {
     getPosts,
     postInputValue
 } from "../../../store/profilePageReducer";
-import CreatePost from "./CreatePost";
 import {connect} from "react-redux";
+import NewMessage from "./NewMessage";
 
+const ContainerNewMessage = props => <NewMessage {...props}/>
 
 const mapStateToProps = () =>({})
 const mapDispatchToProps = { addPost, postInputValue, getPosts }
 
-const ContainerCreatePost = props => <CreatePost {...props}/>
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContainerCreatePost)
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerNewMessage)

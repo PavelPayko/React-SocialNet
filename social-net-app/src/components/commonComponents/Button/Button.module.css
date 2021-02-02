@@ -1,0 +1,19 @@
+.button {
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    min-width: 80px;
+}
+
+.primary {
+    background-color: #ACE1F7;
+}
+.primary:hover {
+    background-color: #CAFCAC;
+}
+.secondary {
+    background-color: #CAFCAC;
+}
+.big {
+    min-width: 160px;
+}

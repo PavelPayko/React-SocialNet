@@ -2,25 +2,29 @@ import React from 'react'
 import classes from './MessagesPage.module.css'
 import Message from "./Message/Message";
 import UserItem from "./UserItem/UserItem";
-import ContainerWriteMessage from "./WriteMessage/ContainerWriteMessage";
+import ContainerNewMessage from "./NewMessage/ContainerNewMessage";
+import ContentBlock from "../commonComponents/ContentBlock/ContentBlock";
 
 const MessagesPage = (props) => {
 
     const messages = props.messageData.map(message => <Message name={message.name}
-                                                               text={message.text}/>)
+                                                               text={message.text}
+                                                               id={message.id}
+                                                               myId={props.myId}
+    />)
     const dialogs = props.dialogsData.map(dialog => <UserItem id={dialog.id}
-                                                              name={dialog.name}/>)
+                                                              name={dialog.name}
+    />)
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.messages}>
                 {messages}
-                <ContainerWriteMessage/>
+                <ContainerNewMessage/>
             </div>
-            <div className={classes.dialogs}>
-                <h3>Диалоги</h3>
-                {dialogs}
-            </div>
+            <ContentBlock title='Diaogs'>
+                <div className={classes.dialogs}>{dialogs}</div>
+            </ContentBlock>
         </div>
     )
 }

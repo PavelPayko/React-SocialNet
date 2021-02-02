@@ -4,12 +4,12 @@
   grid-gap: 0;
   grid-template-columns: 200px 1fr;
   grid-template-rows: 60px 1fr 30px;
-  grid-template-areas: 
+  grid-template-areas:
     'header header'
     'navbar content'
     'footer footer';
   min-height: 100vh;
-  background: linear-gradient(#92B2BF, #ACE1F7 );
+  background: linear-gradient(#ACE1F7, #3881A1 );
 }
 
 

@@ -1,15 +1,20 @@
 import React from 'react'
 import classes from './Auth.module.css'
 import avatar from '../../img/avatar.jpg'
+import {NavLink} from "react-router-dom";
 
 const Auth = (props) => {
-    console.log(props)
     return (
-        <div>
-                {props.isAuth
-                    ? <span>{props.userName}</span>
-                    : <span onClick={props.login}>login</span>
-                }
+        <div className={classes.profileName}>
+            {props.isAuth
+                ? <div>
+                    <span>{props.userName}</span>
+                    <button onClick={props.logout}>log out</button>
+                </div>
+                : <div>
+                    <NavLink to='/login'>login</NavLink>
+                </div>
+            }
             <img src={avatar} alt="avatar" className={classes.avatar}/>
         </div>
     )

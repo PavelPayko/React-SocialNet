@@ -7,14 +7,31 @@ const samuraijsAPI = axios.create({
 });
 
 export const authAPI = {
-    auth() {
+    authMe() {
         return (samuraijsAPI.get('auth/me'))
+            .then((response) => response.data)
+    },
+    login(data){
+        return (samuraijsAPI.post('auth/login', data))
+            .then((response) => response.data)
+    },
+    logout(){
+        return (samuraijsAPI.delete('auth/login'))
             .then((response) => response.data)
     }
 }
 export const profileAPI = {
     getProfile(userId) {
         return (samuraijsAPI.get('profile/' + userId))
+            .then((response) => response.data)
+    },
+    getStatus(userId) {
+        return (samuraijsAPI.get('profile/status/' + userId))
+            .then((response) => response.data)
+    },
+    setStatus(status) {
+        return (samuraijsAPI.put('profile/status/',
+            {status: status}))
             .then((response) => response.data)
     }
 }

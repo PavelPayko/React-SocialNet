@@ -3,7 +3,8 @@
     grid-area: content;
     margin-right: 10px;
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr 250px;
+    padding: 40px 20px;
 
   }
   .posts {

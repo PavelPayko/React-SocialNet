@@ -17,7 +17,11 @@ function ProfilePage(props) {
                     {posts}
                 </div>
             </div>
-            <Profile profile={props.profilePage.profile}/>
+            <Profile profile={props.profilePage.profile}
+                     status={props.profilePage.status}
+                     getStatus={props.getStatusTC}
+                     setStatus={props.setStatusTC}
+            />
         </section>
     )
 }

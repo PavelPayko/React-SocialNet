@@ -4,11 +4,13 @@ const ADD_POST = 'ADD_POST';
 const POST_NEW_INPUT_VALUE = 'INPUT_VALUE'
 const GET_POSTS = 'GET_POSTS'
 const SET_PROFILE = 'SET_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 const initialState = {
     postsData: [],
     postsInputText: 'Write your post',
-    profile: {id: 14402}
+    profile: {id: 14402},
+    status: '',
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -43,6 +45,11 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 profile: {...action.profile}
             }
+        case SET_STATUS :
+            return {
+                ...state,
+                status: action.newValue
+            }
 
         default :
             return state
@@ -60,6 +67,9 @@ export const getPosts = (posts) => (
 export const setProfile = (profile) => (
     {type: SET_PROFILE, profile}
 )
+export const setStatus = (status) => (
+    {type: SET_STATUS, newValue: status}
+)
 
 // thunkCreators
 
@@ -68,6 +78,25 @@ export const setProfileTC = (userId) => {
         profileAPI.getProfile(userId)
             .then((data) => {
                 dispatch(setProfile(data))
+            })
+    }
+
+}
+export const getStatusTC = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId)
+            .then((data) => {
+                dispatch(setStatus(data))
+            })
+    }
+
+}
+export const setStatusTC = (status) => {
+    return (dispatch) => {
+        profileAPI.setStatus(status)
+            .then((data) => {
+                console.log('setStatus', data)
+                dispatch(setStatus(status))
             })
     }
 

@@ -1,6 +1,6 @@
 .page {
     display: flex;
-    margin: 20px 0;
+    margin: 40px 0;
 }
 .userList {
     width: 100%;
@@ -41,13 +41,10 @@
     background-color: #CAFCAC;
 
 }
-.active {
-    background-color: inherit !important;
-    border: 2px solid #F2F2F2;
-    color: #F2F2F2;
-}
+
 .pagination {
-    margin: 8px 0 18px;
+    background-color: #F2F2F2;
+    border-radius: 10px;
 }
 .paginationItem {
     font-size: 12px;
@@ -59,6 +56,10 @@
     display: inline-block;
     line-height: 20px;
     border: 2px solid inherit;
+}
+.active {
+    background-color: #ACE1F7 ;
+    border: 2px solid #F2F2F2;
 }
 .paginationItem:hover {
     background-color: #CAFCAC;

@@ -1,27 +1,15 @@
 import React from 'react'
 import Auth from "./Auth";
 import {connect} from "react-redux";
-import {auth} from "../../store/authReducer";
-import {authAPI} from "../../API/API";
+import {logoutTC} from "../../store/authReducer";
 
 class AuthContainer extends React.Component {
     componentDidMount() {
-        this.login()
     }
-    login = () => {
-        authAPI.auth().then((data) => {
-            if(data.resultCode === 0){
-                this.props.auth(data.data)
-            }else if(data.resultCode === 1){
-                console.log(data.messages)
-            }else{
-                console.error('Auth error!')
-            }
-        })
-    }
+    logout = () => this.props.logoutTC()
     render (){
         return (
-            <Auth {...this.props} login={this.login}/>
+            <Auth {...this.props} login={this.login} logout={this.logout}/>
         )
     }
 }
@@ -31,4 +19,4 @@ const mapStateToProps = (state) =>({
 })
 
 
-export default connect(mapStateToProps,{auth})(AuthContainer)
+export default connect(mapStateToProps,{logoutTC})(AuthContainer)

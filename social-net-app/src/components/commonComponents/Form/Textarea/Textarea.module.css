@@ -1,0 +1,31 @@
+.textarea {
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+    padding: 5px;
+}
+.textarea:focus{
+    border: 1px solid #0880AE;
+    outline: none;
+}
+.label {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: #3E4659;
+}
+.textareaWrapper {
+    text-align: left;
+}
+.error {
+    display: block;
+    height: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FF7171;
+}
+.errorLabel {
+    border: solid 1px red;
+}

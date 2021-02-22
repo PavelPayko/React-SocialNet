@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './Header.module.css'
 import logo from '../../img/logo.svg'
-import AuthContainer from "../Auth/AuthContainer";
+import AuthContainer from "./HeaderProfile/HeaderProfileContainer";
 
 function Header () {
     return (

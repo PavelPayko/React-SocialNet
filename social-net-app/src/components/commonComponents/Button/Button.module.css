@@ -17,3 +17,6 @@
 .big {
     min-width: 160px;
 }
+.small {
+    min-width: 40px;
+}

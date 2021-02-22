@@ -5,6 +5,7 @@
 
 .box {
     width: 28px;
+    min-width: 28px;
     height: 28px;
     background: #FFFFFF;
     border: 1px solid #DBE2EA;

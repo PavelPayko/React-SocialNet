@@ -2,19 +2,22 @@ import React from 'react'
 import {connect} from "react-redux";
 import ProfilePage from "./ProfilePage";
 import {
+    editProfileTC,
     getPosts,
     getStatusTC,
-    setProfile,
+    setProfile, setProfileEditStatus,
     setProfileTC,
     setStatusTC,
     uploadAvatarTC
 } from "../../store/profilePageReducer";
 import {withRouter} from "react-router";
+import {compose} from "redux";
+import withAuthRedirect from "../HOC/withRedirect";
 
 class ProfilePageContainer extends React.Component {
     componentDidMount() {
         let userId = (!this.props.match.params.userId)
-            ? this.props.profilePage.profile.id
+            ? this.props.myId
             : this.props.match.params.userId
         this.props.setProfileTC(userId)
         this.props.getStatusTC(userId)
@@ -32,6 +35,8 @@ const mapStateToProps = (state) => ({
 
 })
 
-const mapDispatchToProps = {getPosts, setProfile, setProfileTC, setStatusTC, getStatusTC, uploadAvatarTC}
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfilePageContainer))
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(ProfilePageContainer)))
+const mapDispatchToProps = {getPosts, setProfile,setProfileEditStatus, setProfileTC, setStatusTC, getStatusTC, uploadAvatarTC, editProfileTC}
+export default compose( withRouter,
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)
+(ProfilePageContainer)

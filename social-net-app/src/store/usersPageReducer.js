@@ -77,13 +77,21 @@ let usersPageReducer = (state = initialState, action) => {
                 followFetchState: [...state.followFetchState, action.userId]
             })
         case UNSET_FOLLOW_FETCHING:
-            let unsetFollowIndex = state.followFetchState.findIndex(item => item.id === action.userId)
-            let newFollowFetchState = [...state.subscriptionsList]
+            let unsetFollowIndex = state.followFetchState.findIndex(item => item === action.userId)
+            let newFollowFetchState = [...state.followFetchState]
             newFollowFetchState.splice(unsetFollowIndex, 1)
             return {
                 ...state,
                 followFetchState: newFollowFetchState
             }
+        // case UNSET_FOLLOW_FETCHING:
+        //     let unsetFollowIndex = state.followFetchState.findIndex(item => item.id === action.userId)
+        //     let newFollowFetchState = [...state.followFetchState]
+        //     newFollowFetchState.splice(unsetFollowIndex, 1)
+        //     return {
+        //         ...state,
+        //         followFetchState: newFollowFetchState
+        //     }
         default:
             return state
 
@@ -105,10 +113,7 @@ export const unfollow = (userId) => ({
     type: UNFOLLOW,
     userId
 })
-export const getSubscriptions = (subscriptions) => ({
-    type: GET_SUBSCRIPTIONS,
-    subscriptions
-})
+
 export const setCurrentPage = (page, users, pageList) => ({
     type: SET_CURRENT_PAGE,
     currentPage: page,

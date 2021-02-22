@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './NewMessage.module.css'
 import {Field, reduxForm} from "redux-form";
-import {renderField} from "../../Form/renderField/renderField";
+import {renderField} from "../../commonComponents/Form/renderField/renderField";
 import Button from "../../commonComponents/Button/Button";
 
 
@@ -15,6 +15,7 @@ const NewMessage = () => {
                            type="textarea"
                            name='body'
                            label={null}
+                           noValidation={true}
                     />
                 </div>
                 <Button type='primary' title='public'/>

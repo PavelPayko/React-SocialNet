@@ -18,6 +18,10 @@ export const authAPI = {
     logout() {
         return (samuraijsAPI.delete('auth/login'))
             .then((response) => response.data)
+    },
+    getCaptcha() {
+        return (samuraijsAPI.get('/security/get-captcha-url'))
+            .then((response) => response.data)
     }
 }
 export const profileAPI = {
@@ -35,15 +39,20 @@ export const profileAPI = {
             .then((response) => response.data)
     },
     uploadAvatar(image) {
-        console.log(image)
         let formData = new FormData();
         formData.append("image", image);
-        return (samuraijsAPI.put('/profile/photo', formData, {
+        return samuraijsAPI.put('/profile/photo', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        }))
+        })
             .then((response) => response.data)
+    },
+    editProfile(profile) {
+        return samuraijsAPI.put('/profile', profile)
+            .then(response => response.data)
+
+
     }
 }
 export const usersAPI = {

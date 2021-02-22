@@ -1,16 +1,17 @@
 import React from 'react'
 import {
     addPost,
-    getPosts,
-    postInputValue
+    getPosts
 } from "../../../store/profilePageReducer";
 import CreatePost from "./CreatePost";
 import {connect} from "react-redux";
 
-
-const mapStateToProps = () =>({})
-const mapDispatchToProps = { addPost, postInputValue, getPosts }
-
 const ContainerCreatePost = props => <CreatePost {...props}/>
+
+const mapStateToProps = (state) =>({
+    updateProfileStatus: state.profilePage.profileEditStatus
+})
+const mapDispatchToProps = { addPost,getPosts }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContainerCreatePost)

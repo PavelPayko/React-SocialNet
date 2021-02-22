@@ -1,19 +1,22 @@
 import {authAPI} from "../API/API";
+import {stopSubmit} from "redux-form";
+import {setProfileTC} from "./profilePageReducer";
 
 const AUTH_ME = 'AUTH_ME'
 const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
+const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL'
 
 const initialState = {
     isAuth: false,
     email: '',
     id: 0,
-    login: ''
+    login: '',
+    captchaUrl: null
 }
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_ME:
-            console.log(action.data)
             return {
                 ...state,
                 isAuth: true,
@@ -22,16 +25,19 @@ const authReducer = (state = initialState, action) => {
                 login: action.data.login
             }
         case LOGIN:
-            console.log(action.userId)
             return {
                 ...state,
-                isAuth: true,
-                id: action.userId,
+                isAuth: true
             }
         case LOGOUT:
             return {
                 ...state,
                 isAuth: false,
+            }
+        case SET_CAPTCHA_URL:
+            return {
+                ...state,
+                captchaUrl: action.url,
             }
         default:
             return state
@@ -42,12 +48,15 @@ export const authMe = (data) => ({
     type: AUTH_ME,
     data
 })
-export const login = (userId) => ({
-    type: LOGIN,
-    userId
+export const login = () => ({
+    type: LOGIN
 })
 export const logout = () => ({
     type: LOGOUT
+})
+export const setCaptchaUrl = (url) => ({
+    type: SET_CAPTCHA_URL,
+    url
 })
 
 //thunk creators
@@ -67,10 +76,16 @@ export const loginTC = data => dispatch => {
     authAPI.login(data)
         .then(responseData => {
             console.log(responseData)
-            dispatch(login(responseData.data.userId))
+            if (responseData.resultCode === 0) {
+                dispatch(authMeTC())
+                dispatch(setProfileTC(responseData.data.userId))
+            } else {
+                if (responseData.resultCode === 10) {
+                    dispatch(getCaptchaTC())
+                }
+                dispatch(stopSubmit('login', {_error: responseData.messages[0]}))
+            }
         })
-        // .then(() => authAPI.authMe())
-        // .then(data => dispatch(authMe(data.data)))
 
 }
 export const logoutTC = () => dispatch => {
@@ -78,6 +93,14 @@ export const logoutTC = () => dispatch => {
         .then(responseData => {
             console.log(responseData)
             dispatch(logout())
+        })
+
+}
+export const getCaptchaTC = () => dispatch => {
+    authAPI.getCaptcha()
+        .then(responseData => {
+            console.log(responseData)
+            dispatch(setCaptchaUrl(responseData.url))
         })
 
 }

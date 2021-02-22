@@ -3,11 +3,11 @@ import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import MessagesPageContainer from "./components/MessagesPage/MessagesPageConainer";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
 import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
-import LoginContainer from "./components/commonComponents/Login/LoginContainer";
+import LoginContainer from "./components/Login/LoginContainer";
 import Loader from "./components/commonComponents/Loader/Loader";
 import {connect} from "react-redux";
 import {initializeTC} from "./store/appReducer";
@@ -41,6 +41,7 @@ const App = (props) => {
                         <SettingsPage/>
                     </React.Suspense></Route>
                     <Route path='/login'><LoginContainer/></Route>
+                    <Route path='/'><Redirect to={'/profile'} /></Route>
                 </Switch>
                 <Footer/>
             </div>

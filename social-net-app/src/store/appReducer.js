@@ -8,7 +8,6 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case INITIALIZE:
-            console.log(action.data)
             return {
                 ...state,
                 isInit: true
@@ -21,7 +20,7 @@ const appReducer = (state = initialState, action) => {
 export const initialize = () => ({ type: INITIALIZE })
 
 //thunk creators
-export const initializeTC = () => dispatch => {
+export const initializeTC = () => (dispatch) => {
     dispatch(authMeTC())
         .then(() => { dispatch(initialize()) })
 

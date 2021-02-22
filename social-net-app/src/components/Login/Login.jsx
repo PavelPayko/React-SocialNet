@@ -2,14 +2,14 @@ import React from 'react'
 import classes from './Login.module.css'
 import {Field, reduxForm} from "redux-form";
 import {Redirect} from "react-router";
-import {email, required} from "../../Form/formValidate";
-import {renderField} from "../../Form/renderField/renderField";
-import Button from "../Button/Button";
+import {email, required} from "../commonComponents/Form/formValidate";
+import {renderField} from "../commonComponents/Form/renderField/renderField";
+import Button from "../commonComponents/Button/Button";
 
 
 const Login = (props) => {
 
-
+    console.log('login')
     let LoginForm = (props) => {
         return <div className={classes.formWrapper}>
             <form onSubmit={props.handleSubmit}>
@@ -32,8 +32,19 @@ const Login = (props) => {
                     />
                 </div>
                 <div className={classes.checkbox}>
-                    <Field component={renderField} type="checkbox" name='rememberMe'/>
+                    <Field component={renderField} type="checkbox" name='rememberMe' label='Запомнить меня'/>
                 </div>
+                {props.error && <div className={classes.commonError}>{props.error}</div>}
+                {props.captchaUrl && <div className={classes.captcha}>
+                    <img src={props.captchaUrl} alt="captcha"/>
+                    <Field component={renderField}
+                           type="text"
+                           name='captcha'
+                           validate={required}
+                           label='captcha'
+                           placeholder='captcha'
+                    />
+                </div>}
                 <div>
                     <Button type='primary' title={'login'} size={'big'}/>
                 </div>
@@ -51,7 +62,7 @@ const Login = (props) => {
     return <div className={classes.loginPage}>
         {props.isAuth
             ? <Redirect to={'/'}/>
-            : <LoginForm onSubmit={submit}/>
+            : <LoginForm onSubmit={submit} captchaUrl={props.captchaUrl}/>
         }
 
     </div>

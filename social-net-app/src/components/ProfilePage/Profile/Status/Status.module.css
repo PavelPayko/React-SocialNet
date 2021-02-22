@@ -1,6 +1,34 @@
 .loader {
 height: 40px;
 }
+.status {
+    min-height: 40px;
+    line-height: 40px;
+    fill: #f2f2f2;
+}
+
 .status:hover {
+    fill: black;
+}
+.input{
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 10px;
+}
+.statusBody {
+    position: relative;
+    padding: 0 20px;
+}
+
+.statusEdit {
+    width: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    fill: inherit;
     cursor: pointer;
+}
+.inputWrapper {
+    padding: 0 10px ;
 }

@@ -23,10 +23,3 @@
     width: 100%;
     box-sizing: border-box;
 }
-.textarea {
-    border-radius: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    resize: none;
-    outline: none;
-}

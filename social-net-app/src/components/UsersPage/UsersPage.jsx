@@ -57,22 +57,23 @@ const UsersPage = (props) => {
         }
     )
 
-    let pagination = props.pageList.map(page => {
-        console.log(page, props.currentPage)
-        return (<span
+    let Pagination = props => (props.pageList.map(page => (<span
             className={(props.currentPage === page)
                 ? `${classes.paginationItem} ${classes.active}`
                 : classes.paginationItem }
             onClick={() => props.getPage(page)}>{page}</span>)
-    })
+    ))
 
     return (
         <div className={classes.page}>
             <div className={classes.userList}>
                 <div className={classes.pagination}>
-                    {pagination}
+                    {<Pagination pageList={props.pageList} currentPage={props.currentPage} />}
                 </div>
                 {props.isFetching ? <Loader /> : usersList}
+                <div className={classes.pagination}>
+                    {pagination}
+                </div>
             </div>
             <div className={classes.subscriptions}>
                 <h5 className={classes.subscriptionsTitle}>Subscriptions</h5>
@@ -82,53 +83,6 @@ const UsersPage = (props) => {
     )
 }
 
+
+
 export default UsersPage
-
-// // JsonPlaceholderAPI
-//
-// <div className={classes.user}>
-//     <img src={avatar} alt="avatar" className={classes.avatar}/>
-// <div className={classes.userInfo}>
-//     <h5 className={classes.userName}>{`${user.name} '${user.username}'`}</h5>
-//     <p className={classes.userDescription}>
-//         <div className={classes.descriptionItem}>Phone:
-//             <span className={classes.descriptionSubitem}>{user.phone}</span>
-//         </div>
-//         <div className={classes.descriptionItem}>Email: <span
-//             className={classes.descriptionSubitem}>{user.email}</span></div>
-//         <div className={classes.descriptionItem}>Website: <span
-//             className={classes.descriptionSubitem}>{user.website}</span></div>
-//         <div className={classes.descriptionItem}>Address: <span
-//             className={classes.descriptionSubitem}>{`${user.address.city}, ${user.address.street}, ${user.address.suite}, ${user.address.zipcode}`}</span>
-//         </div>
-//         <div className={classes.descriptionItem}>Company:
-//             <span className={classes.descriptionSubitem}>{user.company.name}</span></div>
-//     </p>
-// </div>
-// {(this.props.subscriptionsList.findIndex(item => item.id === user.id) !== -1)
-//     ? <button className={classes.followButton}
-//               onClick={() => this.unfollowHandler(user.id)}
-//     >Unfollow</button>
-//     : <button className={classes.followButton}
-//               onClick={() => this.followHandler(user.id)}
-//     >Follow</button>
-// }
-//
-// </div>
-
-// let subscriptionsList = this.props.subscriptionsList.map(user => (
-//         <div className={classes.user}>
-//             <img src={avatar} alt="avatar" className={classes.avatar}/>
-//             <div className={classes.userInfo}>
-//                 <h5 className={classes.userName}>{`${user.name} '${user.username}'`}</h5>
-//                 <p className={classes.userDescription}>
-//                     <div className={classes.descriptionItem}>Phone:
-//                         <span className={classes.descriptionSubitem}>{user.phone}</span>
-//                     </div>
-//                     <div className={classes.descriptionItem}>Email: <span
-//                         className={classes.descriptionSubitem}>{user.email}</span></div>
-//                 </p>
-//             </div>
-//         </div>
-//     )
-// )

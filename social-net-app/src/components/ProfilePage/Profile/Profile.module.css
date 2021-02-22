@@ -13,30 +13,123 @@
 }
 
 .profileName {
-
+    font-size: 18px;
+    font-weight: bold;
 }
-
-.name {
-
+.aboutMe {
+    text-align: left;
 }
-
-.aboutMeTitle {
-
+.aboutMeTitle, .contactsTitle {
+    font-weight: 500;
+    color: #3E4659;
+    font-size: 12px;
 }
 
 .aboutMeDescrition {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
 
 }
 
 .contacts {
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 20px;
+    text-align: left;
 }
-
 .contactsTitle {
-
+    text-align: left;
+}
+.contactsTitle, .profileName,
+.aboutMe, .contactsTitle {
+    display: block;
+    margin-bottom: 10px;
 }
 
 .contacts li {
     list-style-type: none;
+    margin-bottom: 10px;
+    color: #3E4659
+}
+
+.contacts li:last-child {
+    margin: 0;
+}
+
+.avatarLabel {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+
+}
+
+.avatarWrapper {
+    position: relative;
+}
+
+.avatarLabel:hover {
+    cursor: pointer;
+    background-color: black;
+    opacity: .5;
+}
+
+.uploadImage {
+    width: 100px;
+    fill: #f2f2f2;
+}
+
+.avatar {
+    width: 0;
+}
+
+.profileWrapper {
+    position: relative;
+    fill: #f2f2f2;
+    padding: 10px;
+}
+
+.profileWrapper:hover {
+    fill: black;
+}
+
+.profileEdit {
+    width: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    fill: inherit;
+    cursor: pointer;
+}
+
+.profileEditForm {
+    padding: 10px;
+}
+
+.textarea, .checkbox {
+    margin-bottom: 8px;
+}
+
+.formContactsTitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: #3E4659;
+}
+
+.formContacts {
+    padding: 10px 0 0 20px;
+}
+
+.formContactsWrapper {
+    text-align: left;
+}
+.commonError {
+    color: red;
 }

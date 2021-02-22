@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './CreatePost.module.css'
 import Button from "../../commonComponents/Button/Button";
 import {Field, reduxForm} from "redux-form";
-import {renderField} from "../../Form/renderField/renderField";
+import {renderField} from "../../commonComponents/Form/renderField/renderField";
 
 
 const CreatePost = () => {
@@ -21,6 +21,7 @@ const CreatePost = () => {
                            type="textarea"
                            name='body'
                            label={null}
+                           noValidation={true}
                     />
                 </div>
                 <Button type='primary' title='public'/>

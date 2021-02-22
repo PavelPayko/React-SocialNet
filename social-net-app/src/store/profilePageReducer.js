@@ -1,4 +1,5 @@
 import {profileAPI} from "../API/API";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD_POST';
 const POST_NEW_INPUT_VALUE = 'INPUT_VALUE'
@@ -6,12 +7,13 @@ const GET_POSTS = 'GET_POSTS'
 const SET_PROFILE = 'SET_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const SET_PHOTOS = 'SET_PHOTOS'
+const SET_PROFILE_EDIT_STATUS = 'SET_PROFILE_EDIT_STATUS'
 
 const initialState = {
     postsData: [],
-    postsInputText: 'Write your post',
-    profile: {id: 14402},
+    profile: {},
     status: '',
+    profileEditStatus: false
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -19,26 +21,15 @@ const profilePageReducer = (state = initialState, action) => {
         case ADD_POST : {
             return {
                 ...state,
-                postsData: [
-                    ...state.postsData,
-                    {
-                        id: state.postsData.length,
-                        name: 'Мой пост',
-                        body: state.postsInputText
-                    }
-                ],
-                postsInputText: ''
             }
         }
         case POST_NEW_INPUT_VALUE :
             return {
-                ...state,
-                postsInputText: action.value
+                ...state
             }
         case GET_POSTS : {
             return {
-                ...state,
-                postsData: [...state.postsData, ...action.posts]
+                ...state
             }
         }
         case SET_PROFILE :
@@ -56,6 +47,11 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
             }
+        case SET_PROFILE_EDIT_STATUS :
+            return {
+                ...state,
+                profileEditStatus: action.status
+            }
         default :
             return state
     }
@@ -63,12 +59,12 @@ const profilePageReducer = (state = initialState, action) => {
 
 // ActionCreators
 export const addPost = () => (
-    {type: ADD_POST})
-export const postInputValue = (text) => (
-    {type: POST_NEW_INPUT_VALUE, value: text})
+    {type: ADD_POST}
+)
 export const getPosts = (posts) => (
     {type: GET_POSTS, posts}
 )
+
 export const setProfile = (profile) => (
     {type: SET_PROFILE, profile}
 )
@@ -77,6 +73,9 @@ export const setStatus = (status) => (
 )
 export const setPhotos = (photos) => (
     {type: SET_PHOTOS, photos}
+)
+export const setProfileEditStatus = (status) => (
+    {type: SET_PROFILE_EDIT_STATUS, status}
 )
 
 // thunkCreators
@@ -88,7 +87,6 @@ export const setProfileTC = (userId) => {
                 dispatch(setProfile(data))
             })
     }
-
 }
 export const getStatusTC = (userId) => {
     return (dispatch) => {
@@ -97,7 +95,6 @@ export const getStatusTC = (userId) => {
                 dispatch(setStatus(data))
             })
     }
-
 }
 export const setStatusTC = (status) => {
     return (dispatch) => {
@@ -107,7 +104,6 @@ export const setStatusTC = (status) => {
                 dispatch(setStatus(status))
             })
     }
-
 }
 export const uploadAvatarTC = (image) => {
     return (dispatch) => {
@@ -117,7 +113,33 @@ export const uploadAvatarTC = (image) => {
                 dispatch(setPhotos(data.data.photos))
             })
     }
-
+}
+export const editProfileTC = (profile) => {
+    return (dispatch, getState) => {
+        profileAPI.editProfile(profile)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    const id = getState().auth.id
+                    dispatch(setProfileTC(id))
+                    dispatch(setProfileEditStatus(false))
+                } else if (data.resultCode === 1) {
+                    console.error(data.messages[0])
+                    const error = data.messages[0]
+                    const contactsError = error.search('Contacts->')
+                    if (contactsError !== -1) {
+                        const indexStart = contactsError + 10
+                        const indexEnd = error.indexOf(')')
+                        const errorElement = error.slice(indexStart, indexEnd).toLowerCase()
+                        const errorMessage = error.slice(0, contactsError - 2)
+                        const errorObject = {errorElement: errorMessage}
+                        errorObject[errorElement] = errorMessage
+                        dispatch(stopSubmit('profileEdit', {'contacts': errorObject}))
+                    } else {
+                        dispatch(stopSubmit('profileEdit', {_error: error}))
+                    }
+                }
+            })
+    }
 }
 
 

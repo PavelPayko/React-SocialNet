@@ -10,12 +10,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
+const mapDispatchToProps = (dispatch) => ({
         messageSend: () => dispatch(sendMessage()),
         newMessageValue: (text) => dispatch(messageInputValue(text))
-    }
-}
+    })
 const ContainerWriteMessage = connect(mapStateToProps, mapDispatchToProps)(WriteMessage)
 
 export default ContainerWriteMessage

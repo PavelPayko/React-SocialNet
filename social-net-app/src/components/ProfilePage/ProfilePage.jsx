@@ -5,7 +5,6 @@ import classes from './ProfilePage.module.css'
 import ContainerCreatePost from "./NewPost/ContainerCreatePost";
 
 function ProfilePage(props) {
-
     let posts = props.profilePage.postsData.map(
         post => <Post key={post.id} name={post.name} title={post.title} text={post.body}/>
     )
@@ -23,6 +22,9 @@ function ProfilePage(props) {
                      setStatus={props.setStatusTC}
                      uploadAvatar={props.uploadAvatarTC}
                      myId={props.myId}
+                     editProfile={props.editProfileTC}
+                     profileEditStatus={props.profilePage.profileEditStatus}
+                     setProfileEditStatus={props.setProfileEditStatus}
             />
         </section>
     )

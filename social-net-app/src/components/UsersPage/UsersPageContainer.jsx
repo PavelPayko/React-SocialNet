@@ -3,15 +3,15 @@ import {connect} from "react-redux";
 import UsersPage from "./UsersPage";
 import {
     follow, followTC, getPageTC,
-    getSubscriptions,
     getUsers, setCurrentPage, setFetching, setFollowFetching, setPageList,
     unfollow, unfollowTC
 } from "../../store/usersPageReducer";
 import withAuthRedirect from "../HOC/withRedirect";
+import {compose} from "redux";
 
 class UsersPageContainer extends React.Component {
     componentDidMount() {
-   this.getPage()
+        this.getPage()
     }
 
     followHandler = (userId) => {
@@ -78,9 +78,11 @@ const mapStateToProps = (state) => {
 // }
 
 const mapDispatchToProps = {
-    getUsers, follow, unfollow, getSubscriptions,
+    getUsers, follow, unfollow,
     setCurrentPage, setPageList, setFetching, setFollowFetching,
-    getPageTC,followTC, unfollowTC
+    getPageTC, followTC, unfollowTC
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(UsersPageContainer))
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)(UsersPageContainer)

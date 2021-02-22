@@ -15,13 +15,12 @@
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.04);
     border-radius: 6px;
     padding: 16px;
-    margin: 8px 0;
     font-size: 16px;
     line-height: 21px;
 }
 
 .input:focus {
-    border: 2px solid #0880AE;
+    border: 1px solid #0880AE;
     outline: none;
 }
 
@@ -38,10 +37,12 @@
 }
 
 .error {
-    display: inline-block;
+    display: block;
     height: 18px;
     font-size: 14px;
     line-height: 18px;
     color: #FF7171;
 }
-
+.errorLabel {
+    border: solid 1px red;
+}
